@@ -5,12 +5,24 @@
     <title></title>
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQqZ_n8Tx2utBZ1YSPleml2x2yFMApzY&callback=initialize">
-    </script>
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgQqZ_n8Tx2utBZ1YSPleml2x2yFMApzY&callback=initialize">  </script>
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
     <script src="/APIs/gmaps.js"></script>
     <link rel="stylesheet" href="/css/styles.css">
   </head>
   <body>
+    <div class="nav">
+      <% if(loggedIn) {%>
+        <a href="/profile"><%= currentUser.local.name %></a>
+      <% } else { %>
+        <button class="btn btn-default">Login</button>
+        <button class="btn btn-default">Signup</button>
+      <% } %>
+    </div>
+    
+
     <div class='container'>
       <div>
         <h1>the drop</h1>

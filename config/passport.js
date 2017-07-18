@@ -1,5 +1,10 @@
-var LocalStrategy = require('passport-local').Strategy;
-var User = require('../models/user');
+var
+	passport = require('passport'),
+	LocalStrategy = require('passport-local').Strategy,
+	// FacebookStrategy = require('passport-facebook').Strategy,
+	// configAuth = require('./auth.js')
+
+User = require('../models/user.js')
 
 module.exports = function(passport){
 
@@ -15,9 +20,12 @@ module.exports = function(passport){
 
   passport.use('local-signup', new LocalStrategy({
     usernameField: 'email',
+    nameField: 'name',
     passwordField: 'password',
+    locationField: 'location',
+    bioField: 'bio',
     passReqToCallback: true
-  }, function(req, email, password, callback) {
+  }, function(req, email, name, password, location, bio, callback) {
     process.nextTick(function() {
 
       // Find a user with this e-mail
@@ -29,7 +37,6 @@ module.exports = function(passport){
           return callback(null, false, req.flash('signupMessage', 'This email is already used.'));
         } else {
         // There is no email registered with this email
-
           // Create a new user
           var newUser            = new User();
           newUser.local.email    = email;
@@ -45,8 +52,11 @@ module.exports = function(passport){
   }));
 
   passport.use('local-login', new LocalStrategy({
-    usernameField : 'email',
-    passwordField : 'password',
+    usernameField: 'email',
+    nameField: 'name',
+    passwordField: 'password',
+    locationField: 'location',
+    bioField: 'bio',
     passReqToCallback : true
   }, function(req, email, password, callback) {
 
@@ -65,3 +75,4 @@ module.exports = function(passport){
    }));
 
 }
+module.exports = passport
